@@ -20,3 +20,12 @@ class Usuario(AbstractUser):
     telefono = models.CharField(default="", max_length=50)
     direccion = models.CharField(default="", max_length=100)
     rol = models.CharField(max_length=5, choices=ROLES, default="nutri",)
+
+    @property
+    def name(self):
+        name = ""
+        if self.first_name:
+            name += self.first_name
+        if self.last_name:
+            name += " " + self.last_name
+        return name

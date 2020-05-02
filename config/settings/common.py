@@ -145,3 +145,11 @@ AUTHENTICATION_BACKENDS = (
 ACCOUNT_ADAPTER = "historias_server.user.adapter.NoNewUsersAccountAdapter"
 
 LOGIN_REDIRECT_URL = "/"
+
+CRISPY_CLASS_CONVERTERS = {
+    "textinput": "form-control",
+    "emailinput": "form-control",
+    "select": "form-control",
+    "passwordinput": "form-control",
+    "dateinput": "form-control"
+}

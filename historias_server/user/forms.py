@@ -5,11 +5,19 @@ from .models import Usuario
 
 
 class UsuarioForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(UsuarioForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
+
     class Meta:
         model = Usuario
         fields = [
             "username",
             "email",
+            "first_name",
+            "last_name",
             "password1",
             "password2",
             "fecha_nacimiento",
@@ -23,6 +31,21 @@ class UsuarioForm(UserCreationForm):
             "is_staff",
         ]
         widgets = {"is_superuser": forms.HiddenInput(), "is_staff": forms.HiddenInput()}
+        labels = {
+            "username": "Nombre de usuario",
+            "email": "Correo electrónico",
+            "num_documento": "Número de documento",
+            "telefono": "Teléfono",
+            "direccion": "Dirección",
+            "password1": "Contraseña",
+            "password2": "Conformación",
+            "first_name": "Nombres",
+            "last_name": "Apellidos",
+            "fecha_nacimiento": "Fecha de nacimiento",
+        }
+        help_texts = {
+            "username": "",
+        }
 
     def clean_is_superuser(self):
         rol = self.cleaned_data["rol"]

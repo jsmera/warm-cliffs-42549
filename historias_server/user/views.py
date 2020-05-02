@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse
 from .models import Usuario
 from .forms import UsuarioForm
 
@@ -19,7 +20,8 @@ class CreateUsuarioView(LoginRequiredMixin, AdminRequiredMixin, CreateView):
     template_name = "user/usuario_create.html"
     model = Usuario
     form_class = UsuarioForm
-    success_url = "/"
+    def get_success_url(self):
+        return reverse("usuarios:lista")
 
 
 class UsuarioListView(LoginRequiredMixin, AdminRequiredMixin, ListView):
