@@ -1,0 +1,19 @@
+{% extends "base_white.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+    <form method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form.login|as_crispy_field }}
+        {{ form.password|as_crispy_field }}
+        {{ form.remember }}
+        Mantener sesión
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <br>
+        <button type="submit">Entrar</button>
+    </form>
+{% endblock %}

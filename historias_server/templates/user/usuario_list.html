@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Usuarios{% endblock %}
+{% block nav_title %}Usuarios{% endblock %}
+
+{% block content %}
+    
+    <div class="card">
+        <div class="card-body pb-0">
+            <div class="row">
+                <div class="col-md-7">
+                    <h4 class="card-title">Lista de usuarios</h4>
+                </div>
+                <div class="col-md-5 d-flex justify-content-end align-items-center">
+                    <a href="{% url 'usuarios:crear' %}" class="btn btn-primary">Crear usuario</a>
+                </div>
+            </div>
+            <div class="table-responsive pb-0">
+                <table class="table mb-0">
+                    <thead class=" text-primary">
+                        <tr>
+                            <th> Nombre de usuario </th>
+                            <th> Correo </th>
+                            <th> Rol </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in page_obj %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }} </td>
+                                <td>{{ user.get_rol_display }}</td>
+                            </tr> 
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer pt-0">
+            <hr>
+            <div class="m-2 d-flex d-flex justify-content-between">
+                {% if page_obj.has_previous %}
+                    <a class="card-link" href="?page=1">Primero</a>
+                    <a class="card-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a class="card-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    <a class="card-link" href="?page={{ page_obj.paginator.num_pages }}">Último</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
