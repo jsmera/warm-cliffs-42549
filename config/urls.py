@@ -20,15 +20,20 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    url("", include(("historias_server.stats.urls", "stats"), namespace="estadisticas")),
+    url(
+        "", include(("historias_server.stats.urls", "stats"), namespace="estadisticas")
+    ),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("usuarios/", include(("historias_server.user.urls", "usuarios"), namespace="usuarios")),
+    path(
+        "usuarios/",
+        include(("historias_server.user.urls", "usuarios"), namespace="usuarios"),
+    ),
 ]
 
 if settings.DEBUG:
     import debug_toolbar
-    
+
     urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),
+        path("__debug__/", include(debug_toolbar.urls)),
     ]
