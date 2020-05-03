@@ -11,9 +11,46 @@
                     <h4 class="card-title">Lista de usuarios</h4>
                 </div>
                 <div class="col-md-5 d-flex justify-content-end align-items-center">
-                    <a href="{% url 'usuarios:crear' %}" class="btn btn-primary">Crear usuario</a>
+                    <a href="{% url 'usuarios:crear' %}" class="btn btn-primary btn-round">Crear usuario</a>
                 </div>
             </div>
+            <form>
+            <div class="row">
+                <div class="col-md-3 pr-1">
+                    <div class="input-group no-border">
+                        <input type="text" value="{{ full_name }}" name="full_name" class="form-control" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="col-md-2 px-1">
+                    <div class="input-group no-border">
+                        <input type="text" value="{{ username }}" name="username" class="form-control" placeholder="Nombre de usuario">
+                    </div>
+                </div>
+                <div class="col-md-3 px-1">
+                    <div class="input-group no-border">
+                        <input type="text" value="{{ email }}" name="email" class="form-control" placeholder="Correo">
+                    </div>
+                </div>
+                <div class="col-md-2 px-1">
+                    <div class="input-group no-border">
+                        <select name="rol" class="form-control">
+                            <option value {% if "" == rol %}selected{% endif %}>Rol</option>
+                            {% for value, text in user.ROLES %}
+                                <option value="{{value}}" {% if value == rol %}selected{% endif %}>{{text}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 pl-1 d-flex justify-content-center align-items-start">
+                    <div class="input-group no-border">
+                        <button class="btn mt-0 btn-round btn-block btn-primary no-border text-white font-weight-bold text-uppercase">
+                            Buscar <i class="nc-icon nc-zoom-split text-white"></i>
+                        </button>
+                    </div>
+                    <!-- <button class="btn  btn-round m-0">Buscar</button> -->
+                </div>
+                </div>
+            </form>
             <div class="table-responsive pb-0">
                 <table class="table mb-0">
                     <thead class=" text-primary">
@@ -41,8 +78,8 @@
             <hr>
             <div class="m-2 d-flex d-flex justify-content-between">
                 {% if page_obj.has_previous %}
-                    <a class="card-link" href="?page=1">Primero</a>
-                    <a class="card-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    <a class="card-link" rel="keep-params" href="?{{base_url }}&page=1">Primero</a>
+                    <a class="card-link" rel="keep-params" href="?{{base_url }}&page={{ page_obj.previous_page_number }}">Anterior</a>
                 {% endif %}
         
                 <span class="current">
@@ -50,8 +87,8 @@
                 </span>
         
                 {% if page_obj.has_next %}
-                    <a class="card-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
-                    <a class="card-link" href="?page={{ page_obj.paginator.num_pages }}">Último</a>
+                    <a class="card-link" rel="keep-params" href="?{{base_url }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+                    <a class="card-link" rel="keep-params" href="?{{base_url }}&page={{ page_obj.paginator.num_pages }}">Último</a>
                 {% endif %}
             </div>
         </div>
