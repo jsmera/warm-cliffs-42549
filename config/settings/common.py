@@ -151,5 +151,5 @@ CRISPY_CLASS_CONVERTERS = {
     "emailinput": "form-control",
     "select": "form-control",
     "passwordinput": "form-control",
-    "dateinput": "form-control"
+    "dateinput": "form-control",
 }

@@ -1,0 +1,56 @@
+<script>
+    const capitalize = (s) => {
+      if (typeof s !== 'string') return '';
+      return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+    }
+    const roles = ["nutri", "admin"];
+    $('#id_fecha_nacimiento').datepicker({
+      format: "yyyy-mm-dd",
+      language: "es",
+      orientation: "bottom auto"
+    });
+    $(document).ready(function() {
+      $("#id_first_name").keyup(function() {
+        let nombre = $(this).val();
+        let nombres = nombre.split(" ");
+        nombres = nombres.map(capitalize);
+        full_name = nombres.join(" ");
+        $(this).val(full_name);
+        if (full_name != "") {
+          $("#show_first_name").text(full_name);
+        } else {
+          $("#show_first_name").text("Nombre");
+        }
+      });
+      $("#id_last_name").keyup(function() {
+        let nombre = $(this).val();
+        let nombres = nombre.split(" ");
+        nombres = nombres.map(capitalize);
+        full_name = nombres.join(" ");
+        $(this).val(full_name);
+        if (full_name != "") {
+          $("#show_last_name").text(full_name);
+        } else {
+          $("#show_last_name").text("");
+        }
+      });
+      $("#id_username").keyup(function() {
+        let username = $(this).val();
+        if (username != "") {
+          $("#show_username").text("@"+username);
+        } else {
+          $("#show_username").text("@usuario");
+        }
+      });
+      $("#id_rol").change(function() {
+        let rol = $(this).val();
+        for (i in roles) {
+          if (roles[i] != rol) {
+            $("#"+roles[i]).css("display", "none");
+          } else{
+            $("#"+roles[i]).css("display", "initial");
+          }
+        }
+      });
+    })
+  </script>

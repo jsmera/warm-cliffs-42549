@@ -22,3 +22,17 @@
 .sidebar .sidebar-wrapper, .off-canvas-sidebar .sidebar-wrapper {
     overflow-x: hidden;
 }
+
+.clickable-row{
+    cursor: pointer;
+}
+
+.clickable-row:hover{
+    background-color: rgba(81,203,206, 0.3);
+    transition: 0.5s;
+}
+
+.modal-header, .modal-footer{
+    border-bottom: 0px;
+    border-top: 0px;
+}

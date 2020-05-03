@@ -1,0 +1,162 @@
+{% load crispy_forms_tags %}
+{% load static %}
+{% if object %}
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header pb-1">
+          <h5 class="modal-title" id="exampleModalLongTitle">¿Está seguro que desea eliminar este usuario?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-1">
+            Si elimina este usuario todas la historias clínicas y pacientes que haya creado el mismo quedarán desvinculadas, pero no eliminadas.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">Cerrar</button>
+          <form method="post" action="{% url 'usuarios:eliminar' object.uuid %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-round">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+<div class="col-md-4">
+    <div class="card card-user">
+    <div class="image">
+        {% if object %}
+        <img id="nutri" {% if object.rol == 'admin' %}style="display: none;"{% endif %} src="{% static 'img/consultorio.jpg' %}" alt="...">
+        <img id="admin" {% if object.rol == 'nutri' %}style="display: none;"{% endif %} src="{% static 'img/admin.jpg' %}" alt="...">
+        {% else %}
+        <img id="nutri" src="{% static 'img/consultorio.jpg' %}" alt="...">
+        <img id="admin" style="display: none;" src="{% static 'img/admin.jpg' %}" alt="...">
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <div class="author">
+        <a href="#">
+            <img class="avatar border-gray" src="{% static 'img/mike.jpg' %}" alt="...">
+            <h5 class="title"><span id="show_first_name">{% if object %}{{object.nombre_perfil}}{% else %}Nombre{% endif %}</span> <span id="show_last_name"></span></h5>
+        </a>
+        <p id="show_username" class="description">
+            {% if object %}
+                @{{ object.username }}
+            {%else%}
+                @usuario
+            {% endif %}
+            </p>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="col-md-8">
+    <div class="card card-user">
+    <div class="card-header">
+        <h5 class="card-title">Perfil</h5>
+    </div>
+    <div class="card-body">
+        <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 pr-1">
+            <div class="form-group">
+                {{ form.username|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-6 pl-1">
+            <div class="form-group">
+                {{ form.email|as_crispy_field }}
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+            <div class="form-group">
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-6 pl-1">
+            <div class="form-group">
+                {{ form.last_name|as_crispy_field }}
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 pr-1">
+            <div class="form-group">
+                {{ form.estado_civil|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-4 px-1">
+            <div class="form-group">
+                {{ form.tipo_documento|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-4 pl-1">
+            <div class="form-group">
+                {{ form.num_documento|as_crispy_field }}
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 pr-1">
+            <div class="form-group">
+                {{ form.direccion|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-4 px-1">
+            <div class="form-group">
+                {{ form.telefono|as_crispy_field }}
+            </div>
+            </div>
+            <div class="col-md-4 pl-1">
+            <div class="form-group">
+                {{ form.fecha_nacimiento|as_crispy_field }}
+            </div>
+            </div>
+        </div>
+        {% if not object %}
+            <div class="row">
+            <div class="col-md-4 pr-1">
+                <div class="form-group">
+                {{ form.password1|as_crispy_field }}
+                </div>
+            </div>
+            <div class="col-md-4 px-1">
+                <div class="form-group">
+                {{ form.password2|as_crispy_field }}
+                </div>
+            </div>
+            <div class="col-md-4 pl-1">
+                <div class="form-group">
+                {{ form.rol|as_crispy_field }}
+                </div>
+            </div>
+            </div>
+        {% else %}
+            <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                {{ form.rol|as_crispy_field }}
+                </div>
+            </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="update ml-auto mr-auto">
+                {% if object %}
+                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn btn-danger btn-round">Eliminar</button>
+                {% endif %}
+                <button type="submit" class="btn btn-primary btn-round">Guardar</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+</div>
+</div>

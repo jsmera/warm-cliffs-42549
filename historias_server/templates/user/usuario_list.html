@@ -18,6 +18,7 @@
                 <table class="table mb-0">
                     <thead class=" text-primary">
                         <tr>
+                            <th> Nombre </th>
                             <th> Nombre de usuario </th>
                             <th> Correo </th>
                             <th> Rol </th>
@@ -25,11 +26,12 @@
                     </thead>
                     <tbody>
                         {% for user in page_obj %}
-                            <tr>
+                            <tr class="clickable-row" data-href="{% url 'usuarios:editar' user.uuid %}">
+                                <td>{{ user.nombre_perfil }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.email }} </td>
                                 <td>{{ user.get_rol_display }}</td>
-                            </tr> 
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

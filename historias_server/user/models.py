@@ -1,15 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from shortuuidfield import ShortUUIDField
 from django.utils import timezone
 
-# Create your models here.
 
-
-class Usuario(AbstractUser):
+class Perfil(models.Model):
     TIPO_DOCUMENTO = [("CC", "Cedula"), ("TI", "Tarjeta de identidad")]
     GENERO = [("F", "Femenino"), ("M", "Masculino")]
     ESTADO = [("SO", "Soltero"), ("CA", "Casado"), ("DI", "Divorciado")]
-    ROLES = [("admin", "Administrador"), ("nutri", "Nutricionista")]
+    first_name = models.CharField(blank=True, max_length=30, verbose_name="nombres")
+    last_name = models.CharField(blank=True, max_length=150, verbose_name="apellidos")
+    email = models.EmailField(
+        blank=True, max_length=254, verbose_name="correo electrónico"
+    )
     fecha_nacimiento = models.DateField(default=timezone.now)
     tipo_documento = models.CharField(
         max_length=2, choices=TIPO_DOCUMENTO, default="CC",
@@ -19,13 +22,30 @@ class Usuario(AbstractUser):
     estado_civil = models.CharField(max_length=2, choices=ESTADO, default="SO",)
     telefono = models.CharField(default="", max_length=50)
     direccion = models.CharField(default="", max_length=100)
-    rol = models.CharField(max_length=5, choices=ROLES, default="nutri",)
+
+    class Meta:
+        abstract = True
 
     @property
-    def name(self):
+    def nombre_perfil(self):
         name = ""
         if self.first_name:
             name += self.first_name
         if self.last_name:
             name += " " + self.last_name
         return name
+
+
+class AbstractCustomUser(AbstractUser):
+    first_name = None
+    last_name = None
+    email = None
+
+    class Meta:
+        abstract = True
+
+
+class Usuario(Perfil, AbstractCustomUser):
+    ROLES = [("admin", "Administrador"), ("nutri", "Nutricionista")]
+    uuid = ShortUUIDField()
+    rol = models.CharField(max_length=5, choices=ROLES, default="nutri",)
