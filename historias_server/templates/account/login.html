@@ -4,16 +4,29 @@
 {% block title %}Iniciar sesión{% endblock %}
 
 {% block content %}
-    <form method="POST" action="{% url 'account_login' %}">
+    <form class="form-signin" method="POST" action="{% url 'account_login' %}">
+        <h1 class="h3 mb-3 font-weight-normal">NUTRIPEDIA</h1>
+        <div class="col-sm">
         {% csrf_token %}
-        {{ form.login|as_crispy_field }}
-        {{ form.password|as_crispy_field }}
-        {{ form.remember }}
-        Mantener sesión
-        {% if redirect_field_value %}
+            <div class="form-group">
+                {{form.login}}
+            </div>
+         
+            <div class="form-group">
+                {{ form.password }}
+            </div>
+            
+            <div class="col">
+                {{ form.remember }}
+                <label class="checkL">Mantener sesión</label>
+            </div>
+            
+            {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <br>
-        <button type="submit">Entrar</button>
+            {% endif %}
+            <br>
+            <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
+        </div>
+        
     </form>
 {% endblock %}
