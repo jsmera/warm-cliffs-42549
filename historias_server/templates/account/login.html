@@ -4,6 +4,7 @@
 {% block title %}Iniciar sesión{% endblock %}
 
 {% block content %}
+    
     <form class="form-signin" method="POST" action="{% url 'account_login' %}">
         <h1 class="h3 mb-3 font-weight-normal">NUTRIPEDIA</h1>
         <div class="col-sm">
@@ -25,7 +26,7 @@
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
             <br>
-            <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
+            <button id="buttonLogin" class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
         </div>
         
     </form>
