@@ -70,6 +70,12 @@ Coded by www.creative-tim.com
                 </a>
               </li>
             {% endif %}
+            <li class="{% if 'pacientes' in request.resolver_match.namespaces %}active{% endif %}">
+              <a href="{% url 'usuarios:lista-pacientes' %}">
+                <i class="nc-icon nc-single-02"></i>
+                <p>Pacientes</p>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

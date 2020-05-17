@@ -49,3 +49,6 @@ class Usuario(Perfil, AbstractCustomUser):
     ROLES = [("admin", "Administrador"), ("nutri", "Nutricionista")]
     uuid = ShortUUIDField()
     rol = models.CharField(max_length=5, choices=ROLES, default="nutri",)
+
+class Paciente(Perfil):
+    uuid = ShortUUIDField()

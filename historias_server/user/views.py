@@ -6,7 +6,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from .models import Usuario
-from .forms import CreateUsuarioForm, UpdateUsuarioForm
+from .models import Paciente
+from .forms import CreateUsuarioForm, UpdateUsuarioForm,CreatePacienteForm, UpdatePacienteForm
 from django.db.models import Q
 
 
@@ -74,6 +75,61 @@ class UsuarioListView(LoginRequiredMixin, AdminRequiredMixin, ListView):
         context["username"] = self.request.GET.get('username', "")
         context["email"] = self.request.GET.get('email', "")
         context["rol"] = self.request.GET.get('rol', "")
+        context["base_url"] = base_url.urlencode
+
+        return context
+
+
+
+
+
+class CreatePacienteView(LoginRequiredMixin, CreateView):
+    template_name = "pacientes/paciente_create.html"
+    model = Paciente
+    form_class = CreatePacienteForm
+
+    def get_success_url(self):
+        return reverse("usuarios:lista-pacientes")
+
+class UpdatePacienteView(LoginRequiredMixin, UpdateView):
+    template_name = "pacientes/paciente_update.html"
+    model = Paciente
+    form_class = UpdatePacienteForm
+
+    def get_success_url(self):
+        return reverse("usuarios:lista-pacientes")
+    
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Paciente, uuid=self.kwargs["uuid"])
+        return obj
+
+class DeletePacienteView(LoginRequiredMixin, AdminRequiredMixin, DeleteView):
+    model = Paciente
+    success_url = reverse_lazy("usuarios:lista-pacientes")
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Paciente, uuid=self.kwargs["uuid"])
+        return obj
+
+
+class PacienteListView(LoginRequiredMixin, ListView):
+    template_name = "pacientes/paciente_list.html"
+    model = Paciente
+    paginate_by = 10
+
+    def get_queryset(self):
+        num_documento = self.request.GET.get('num_documento', "")
+   
+        query = Paciente.objects.filter(num_documento__icontains=num_documento)
+        return query
+    
+    def get_context_data(self, **kwargs):
+        base_url = self.request.GET.copy()
+        if "page" in base_url:
+            base_url.pop("page")
+        context = super(PacienteListView, self).get_context_data(**kwargs)
+        context["nombre_perfil"] = self.request.GET.get('nombre_perfil', "")
+        context["num_documento"] = self.request.GET.get('num_documento', "")
         context["base_url"] = base_url.urlencode
 
         return context
