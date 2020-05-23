@@ -29,6 +29,10 @@ urlpatterns = [
         "usuarios/",
         include(("historias_server.user.urls", "usuarios"), namespace="usuarios"),
     ),
+    path(
+        "usuarios/",
+        include(("historias_server.historias.urls", "historias"), namespace="historias"),
+    ),
 ]
 
 if settings.DEBUG:

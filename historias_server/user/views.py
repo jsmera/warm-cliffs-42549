@@ -80,9 +80,6 @@ class UsuarioListView(LoginRequiredMixin, AdminRequiredMixin, ListView):
         return context
 
 
-
-
-
 class CreatePacienteView(LoginRequiredMixin, CreateView):
     template_name = "pacientes/paciente_create.html"
     model = Paciente

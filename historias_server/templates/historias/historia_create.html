@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Crear nueva historia clinica{% endblock %}
+{% block nav_title %}Crear nueva historia clinica{% endblock %}
+
+{% block content %}
+  {% include "historias/historia_form.html" %}
+{% endblock %}
+{% block extra_js %}
+  {% include "historias/historia_form_js.html" %}
+{% endblock %}

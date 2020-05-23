@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Editar historia: {{object.nombre_perfil}}{% endblock %}
+{% block nav_title %}Editar historia: {{object.nombre_perfil}}{% endblock %}
+
+{% block content %}
+  {% include "historias/historia_form.html" %}
+{% endblock %}
+{% block extra_js %}
+  {% include "historias/historia_form_js.html" %}
+{% endblock %}

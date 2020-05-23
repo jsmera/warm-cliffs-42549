@@ -13,3 +13,4 @@ urlpatterns = [
     url(r"^pacientes/(?P<uuid>[-\w]+)/editar-pacientes/$", UpdatePacienteView.as_view(), name="editar-pacientes"),
     url(r"^pacientes/(?P<uuid>[-\w]+)/eliminar-pacientes/$", DeletePacienteView.as_view(), name="eliminar-pacientes"),
 ]
+

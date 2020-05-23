@@ -1,0 +1,347 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="row">
+    <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="card card-user">
+        <br/>
+        <div class="row">
+            <div class="col-md-4 pr-1">
+            </div>
+            
+            <div class="col-md-4 pr-1" style="text-align:center" >
+            <h5 class="card-title" style="margin-top: 20px;">Historia clinica</h5>
+            </div>
+            <div class="col-md-4 pr-1">
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                 
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                    <div class="form-group" >
+                        {{ form.duracion_ejercicio|as_crispy_field }}
+                    </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.frecuencia_ejercicio|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.inicio_ejercicio|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.nivel_apetito|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.hora_mayor_apetito|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.diagnostico|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        {{ form.cant_comidas|as_crispy_field }}
+                    </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.peso_actual|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.peso_habitual|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.estatura|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.pliegueCutaneoTri|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.pliegueCutaneoBi|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.pliegueCutaneoSub|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.pliegueCutaneoSupra|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.circ_brazo|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.circ_cintura|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.circ_cadera|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.circ_abdominal|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.peso_teorico|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.porcent_peso_teorico|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.porcent_peso_habitual|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.indice_masa_corporal|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.porcent_grasa_corporal|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.grasa_corporal_tot|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.masa_libre_grasa|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-3 pr-1">
+                    </div>
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            {{ form.masa_muscular_total|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pr-1">
+                    </div>
+                    <div class="col-md-4 pr-1">
+                        <button type="submit" class="btn btn-primary btn-round">Guardar</button>
+                    </div>
+                    <div class="col-md-3 pr-1">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+<div class="col-md-1"></div>
