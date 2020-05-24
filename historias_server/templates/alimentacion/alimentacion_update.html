@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Editar Alimento: {{object.nombre_alimento}}{% endblock %}
+{% block nav_title %}Editar Alimento: {{object.nombre_alimento}}{% endblock %}
+
+{% block content %}
+  {% include "alimentacion/alimentacion_form.html" %}
+{% endblock %}

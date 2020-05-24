@@ -101,7 +101,7 @@ class UpdateHistoriaForm(ModelForm):
         ]
 
         labels = {
-            "duracion_ejercicio":"Duracion del ejercicio",
+            "duracion_ejercicio":"Duracion del ejercicio (en minutos)",
             "frecuencia_ejercicio":"Frecuencia del ejercicio",
             "inicio_ejercicio":"Inicio del ejercicio",
             "nivel_apetito":"Nivel del apetito",

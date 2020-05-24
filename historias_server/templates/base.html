@@ -77,6 +77,21 @@ Coded by www.creative-tim.com
                 <p>Pacientes</p>
               </a>
             </li>
+
+            <li class="{% if 'alimentacion' in request.resolver_match.namespaces %}active{% endif %}">
+              <a href="{% url 'alimentacion:lista-alimentacion' %}">
+                <i class="nc-icon nc-single-02"></i>
+                <p>Alimentacion</p>
+              </a>
+            </li>
+
+            <li class="{% if 'medicacion' in request.resolver_match.namespaces %}active{% endif %}">
+              <a href="{% url 'medicacion:lista-medicacion' %}">
+                <i class="nc-icon nc-single-02"></i>
+                <p>Medicamentos</p>
+              </a>
+            </li>
+
           </ul>
         </div>
       </div>

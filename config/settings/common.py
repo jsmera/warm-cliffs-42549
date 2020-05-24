@@ -37,6 +37,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "historias_server.user",
     "historias_server.historias",
+    "historias_server.alimentacion",
+    "historias_server.medicacion",
     "historias_server.stats",
     "django.contrib.admin",
     "django.contrib.auth",

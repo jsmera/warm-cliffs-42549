@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Historias{% endblock %}
-{% block nav_title %}Historias{% endblock %}
+{% block title %}Alimentos{% endblock %}
+{% block nav_title %}Alimentos{% endblock %}
 
 {% block content %}
     
@@ -8,19 +8,19 @@
         <div class="card-body pb-0">
             <div class="row">
                 <div class="col-md-9 pr-4">
-                    <h4 class="card-title">Historia Clinicas : {{paciente.nombre_perfil}}</h4>
+                    <h4 class="card-title">Alimentos</h4>
                     
                 </div>
                
                 <div class="col-md-3 pl-1 d-flex justify-content-end align-items-center">
-                    <a href="{% url 'historias:crear-historias' paciente.uuid %}" class="btn btn-primary btn-round  btn-block">Crear Historia</a>
+                    <a href="{% url 'alimentacion:crear-alimentacion' %}" class="btn btn-primary btn-round  btn-block">Crear Alimento</a>
                 </div>
             </div>
             <form>
             <div class="row">
                 <div class="col-md-5">
                     <div class="input-group no-border">
-                        <input type="text" value="{{ fecha_creacion }}" name="fecha_creacion" class="form-control" placeholder="Fecha Creacion">
+                        <input type="text" value="{{ nombre_alimento }}" name="nombre_alimento" class="form-control" placeholder="Nombre Alimento">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -40,15 +40,13 @@
                 <table class="table mb-0">
                     <thead class=" text-primary">
                         <tr>
-                            <th> Fecha Creacion </th>
-                            <th> Fecha Actualizacion </th>
+                            <th> Nombre Alimento </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for historia in page_obj %}
-                            <tr class="clickable-row" data-href="{% url 'historias:editar-historias' paciente.uuid historia.uuid%}">
-                                <td>{{ historia.fecha_creacion }} </td>
-                                <td>{{ historia.fecha_actualizacion }} </td>
+                        {% for alimento in page_obj %}
+                            <tr class="clickable-row" data-href="{% url 'alimentacion:editar-alimentacion' alimento.uuid%}">
+                                <td>{{ alimento.nombre_alimento }} </td>
                             </tr> 
                         {% endfor %}
                     </tbody>

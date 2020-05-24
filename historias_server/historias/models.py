@@ -8,13 +8,13 @@ class DatosHistoria(models.Model):
     FRECUENCIA = [("0D", "0 Dias"), ("1D", "1 Dia"), ("2D", "2 Dias"),("3D", "3 Dias"), 
                 ("4D", "4 Dias"), ("5D", "5 Dias"),("6D", "6 Dias"), ("7D", "7 Dias")]
     APETITO = [("BA", "Bajo"), ("ME", "Medio"), ("AL", "Alto")]
-    HORA = [("0h","00"),("1h","1AM"),("2h","2AM"),("3h","3AM"),("4h","4AM"),("5h","5AM"),("6h","6AM"),("7h","7AM"),
-            ("8h","8AM"),("9h","9AM"),("10h","10AM"),("11h","11AM"),("12h","12PM"),("13h","1PM"),("14h","2PM"),("15h","3PM"),
-            ("16h","4PM"),("17h","5PM"),("18h","6PM"),("19h","7PM"),("20h","8PM"),("21h","9PM"),
-            ("22h","10PM"),("23h","11PM")]
+    HORA = [("0h","0 AM"),("1h","1 AM"),("2h","2 AM"),("3h","3 AM"),("4h","4 AM"),("5h","5 AM"),("6h","6 AM"),("7h","7 AM"),
+            ("8h","8 AM"),("9h","9 AM"),("10h","10 AM"),("11h","11 AM"),("12h","12 PM"),("13h","1 PM"),("14h","2 PM"),("15h","3 PM"),
+            ("16h","4 PM"),("17h","5 PM"),("18h","6 PM"),("19h","7 PM"),("20h","8 PM"),("21h","9 PM"),
+            ("22h","10 PM"),("23h","11 PM")]
 
     fecha_creacion = models.DateField(default=datetime.datetime.now)
-    fecha_actualizacion = models.DateField(default=datetime.datetime.now)
+    fecha_actualizacion = models.DateField(auto_now=True)
     #poner esto en char o float
     duracion_ejercicio = models.FloatField(null=True, blank=True, default=None)
     frecuencia_ejercicio = models.CharField(max_length=2, choices=FRECUENCIA, default="0D",)
