@@ -78,7 +78,7 @@ Coded by www.creative-tim.com
               </a>
             </li>
 
-            <li class="{% if 'alimentacion' in request.resolver_match.namespaces %}active{% endif %}">
+            <!--<li class="{% if 'alimentacion' in request.resolver_match.namespaces %}active{% endif %}">
               <a href="{% url 'alimentacion:lista-alimentacion' %}">
                 <i class="nc-icon nc-single-02"></i>
                 <p>Alimentacion</p>
@@ -90,7 +90,7 @@ Coded by www.creative-tim.com
                 <i class="nc-icon nc-single-02"></i>
                 <p>Medicamentos</p>
               </a>
-            </li>
+            </li>-->
 
           </ul>
         </div>
@@ -178,8 +178,14 @@ Coded by www.creative-tim.com
     <script src="{% static 'js/plugins/bootstrap-datepicker.es.min.js' %}"></script>
  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"></script>
-
+    <link src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"></link>
+    <script>
+      window.fwSettings={
+      'widget_id':64000000609
+      };
+      !function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
+    </script>
+    <script type='text/javascript' src='https://widget.freshworks.com/widgets/64000000609.js' async defer></script>
     <script src="{% static 'demo/demo.js' %}"></script>
     <script>
       jQuery(document).ready(function() {

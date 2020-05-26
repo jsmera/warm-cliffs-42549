@@ -24,17 +24,17 @@ class CreateAlimentacionForm(ModelForm):
         ]
 
         labels = {
-            "nombre_alimento":"nombre_alimento",
+            "nombre_alimento":"nombre del alimento",
             "descripcion":"descripcion",
             "unidad":"unidad",
-            "cant_sodio":"cant_sodio",
-            "cant_calcio":"cant_calcio",
-            "cant_magnesio":"cant_magnesio",
+            "cant_sodio":"cantidad de sodio",
+            "cant_calcio":"cantidad de calcio",
+            "cant_magnesio":"cantidad de magnesio",
             "calorias":"calorias",
             "proteina":"proteina",
             "carbohidratos":"carbohidratos",
             "grasas":"grasas",
-            "lista_negra":"lista_negra", 
+            "lista_negra":"lista negra de alimentos", 
         }
    
 
@@ -56,16 +56,16 @@ class UpdateAlimentacionForm(ModelForm):
         ]
 
         labels = {
-            "nombre_alimento":"nombre_alimento",
+            "nombre_alimento":"nombre del alimento",
             "descripcion":"descripcion",
             "unidad":"unidad",
-            "cant_sodio":"cant_sodio",
-            "cant_calcio":"cant_calcio",
-            "cant_magnesio":"cant_magnesio",
-            "calorias":"calorias",
-            "proteina":"proteina",
-            "carbohidratos":"carbohidratos",
-            "grasas":"grasas",
-            "lista_negra":"lista_negra", 
+            "cant_sodio":"cantidad de sodio",
+            "cant_calcio":"cantidad de calcio",
+            "cant_magnesio":"cantidad de magnesio",
+            "calorias":"cantidad de calorias",
+            "proteina":"cantidad de proteina",
+            "carbohidratos":"cantidad de carbohidratos",
+            "grasas":"cantidad de grasas",
+            "lista_negra":"lista negra de alimentos", 
         }
     

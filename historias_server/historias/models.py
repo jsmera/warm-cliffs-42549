@@ -21,7 +21,7 @@ class DatosHistoria(models.Model):
     inicio_ejercicio = models.DateField(default=datetime.datetime.now)
     nivel_apetito = models.CharField(max_length=2, choices=APETITO, default="AL",)
     hora_mayor_apetito = models.CharField(max_length=4, choices=HORA, default="0h",)
-    diagnostico = models.TextField(default="")
+    diagnostico = models.TextField(default="", blank=True)
     cant_comidas = models.IntegerField(null=True, blank=True, default=None)
     peso_actual = models.FloatField(null=True, blank=True, default=None)
     peso_habitual = models.FloatField(null=True, blank=True, default=None)

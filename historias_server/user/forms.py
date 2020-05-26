@@ -29,6 +29,7 @@ class CreateUsuarioForm(UserCreationForm):
             "rol",
             "is_superuser",
             "is_staff",
+            "genero",
         ]
         widgets = {"is_superuser": forms.HiddenInput(), "is_staff": forms.HiddenInput()}
         labels = {
@@ -42,6 +43,7 @@ class CreateUsuarioForm(UserCreationForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
+            "genero":"genero",
         }
         help_texts = {
             "username": "",
@@ -74,6 +76,7 @@ class UpdateUsuarioForm(ModelForm):
             "telefono",
             "direccion",
             "rol",
+            "genero",
             "is_superuser",
             "is_staff",
         ]
@@ -87,6 +90,7 @@ class UpdateUsuarioForm(ModelForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
+            "genero" : "genero",
         }
         help_texts = {
             "username": "",
