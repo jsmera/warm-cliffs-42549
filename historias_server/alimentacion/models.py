@@ -2,7 +2,7 @@ from django.db import models
 from shortuuidfield import ShortUUIDField
 
 class DatosAlimentacion(models.Model):
-    LISTA_NEGRA = [(0, "No"), (1, "Si")]
+    LISTA_NEGRA = [("0", "No"), ("1", "Si")]
     nombre_alimento = models.CharField(blank=True, max_length=30, verbose_name="nombres")
     descripcion = models.TextField(default="", blank=True)
     unidad = models.FloatField(null=True, blank=True, default=None)
