@@ -8,8 +8,8 @@ class Perfil(models.Model):
     TIPO_DOCUMENTO = [("CC", "Cedula"), ("TI", "Tarjeta de identidad")]
     GENERO = [("F", "Femenino"), ("M", "Masculino")]
     ESTADO = [("SO", "Soltero"), ("CA", "Casado"), ("DI", "Divorciado")]
-    first_name = models.CharField(max_length=30, verbose_name="nombres",blank=False)
-    last_name = models.CharField(max_length=150, verbose_name="apellidos",blank=False)
+    first_name = models.CharField(max_length=30, verbose_name="nombres",blank=True)
+    last_name = models.CharField(max_length=150, verbose_name="apellidos",blank=True)
     email = models.EmailField(blank=False,max_length=254, verbose_name="correo electrónico")
     fecha_nacimiento = models.DateField(default=timezone.now)
     tipo_documento = models.CharField(

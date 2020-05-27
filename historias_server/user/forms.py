@@ -43,7 +43,7 @@ class CreateUsuarioForm(UserCreationForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
-            "genero":"genero",
+            "genero":"Genero",
         }
         help_texts = {
             "username": "",

@@ -57,21 +57,21 @@ Coded by www.creative-tim.com
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li class="{% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">
+            <li >
               <a href="{% url 'estadisticas:inicio' %}">
                 <i class="nc-icon nc-bank"></i>
                 <p>Inicio</p>
               </a>
             </li>
             {% if request.user.is_superuser %}
-              <li class="{% if 'usuarios' in request.resolver_match.namespaces %}active{% endif %}">
+              <li >
                 <a href="{% url 'usuarios:lista' %}">
                   <i class="nc-icon nc-single-02"></i>
                   <p>Usuarios</p>
                 </a>
               </li>
             {% endif %}
-            <li class="{% if 'pacientes' in request.resolver_match.namespaces %}active{% endif %}">
+            <li >
               <a href="{% url 'usuarios:lista-pacientes' %}">
                 <i class="nc-icon nc-single-02"></i>
                 <p>Pacientes</p>

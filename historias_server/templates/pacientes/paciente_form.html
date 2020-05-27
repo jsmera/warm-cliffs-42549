@@ -34,13 +34,11 @@
             <div class="col-md-4 pr-1">
             </div>
             <div class="col-md-4 pr-1" style="text-align:center; margin-top:20px" >
-            <h5 class="card-title">Datos Paciente</h5>
+                <h5 class="card-title">Datos Paciente</h5>
             </div>
             <div class="col-md-4 pr-1">
             </div>
-        
         </div>
-   
         <div class="card-body">
             {% if object %}
             <div class="row">
@@ -52,9 +50,7 @@
                 <div class="col-md-4 pr-1">
                 </div>
             </div>
-         
             {% endif %}
-           
             <form method="post">
                 {% csrf_token %}
                 <div class="row">
@@ -84,9 +80,9 @@
                     <div class="col-md-3 pr-1">
                     </div>
                     <div class="col-md-6 pr-1">
-                    <div class="form-group">
-                        {{ form.estado_civil|as_crispy_field }}
-                    </div>
+                        <div class="form-group">
+                            {{ form.estado_civil|as_crispy_field }}
+                        </div>
                     </div>
                     <div class="col-md-3 pr-1">
                     </div>
