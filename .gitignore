@@ -269,3 +269,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/linux,macos,django,python,windows,sublimetext
 .env
+historias_server/static/*
