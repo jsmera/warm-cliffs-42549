@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "wkhtmltopdf",
 ]
 
 SITE_ID = 1
@@ -77,6 +78,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.media",
             ],
             "loaders": [
                 "django.template.loaders.filesystem.Loader",
@@ -135,6 +137,11 @@ STATICFILES_DIRS = [
     os.path.join(APPS_DIR, "statics"),
 ]
 
+STATIC_ROOT = os.path.join(APPS_DIR, "static")
+
+MEDIA_ROOT = os.path.join(APPS_DIR, "media")
+MEDIA_URL = "/media/"
+
 AUTH_USER_MODEL = "user.Usuario"
 
 
@@ -172,8 +179,11 @@ from sentry_sdk.integrations.django import DjangoIntegration
 sentry_sdk.init(
     dsn="https://fbd51ab76a5e42a4ae9f2b2d611bd907@o399583.ingest.sentry.io/5256910",
     integrations=[DjangoIntegration()],
-
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
+    send_default_pii=True,
 )
+
+WKHTMLTOPDF_CMD_OPTIONS = {
+    "quiet": True,
+}

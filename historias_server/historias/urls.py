@@ -3,7 +3,8 @@ from .views import (
     HistoriaListView,
     UpdateHistoriaView,
     DeleteHistoriaView,
-    SendReceipt
+    SendReceipt,
+    HistoriaPDFReportView,
 )
 from django.conf.urls import url
 
@@ -32,5 +33,10 @@ urlpatterns = [
         r"^historias/(?P<uuid>[-\w]+)/enviar/$",
         SendReceipt.as_view(),
         name="enviar-historia",
+    ),
+    url(
+        r"^historias/(?P<uuid>[-\w]+)/reporte/$",
+        HistoriaPDFReportView.as_view(),
+        name="report-pdf",
     ),
 ]

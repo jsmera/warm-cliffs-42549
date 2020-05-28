@@ -17,41 +17,50 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
+from django.conf.urls.static import static
+
 
 def trigger_error(request):
-    division_by_zero = 1 / 0
+    1 / 0
 
-urlpatterns = [
-    url(
-        "", include(("historias_server.stats.urls", "stats"), namespace="estadisticas")
-    ),
-    path("admin/", admin.site.urls),
-    path("accounts/", include("allauth.urls")),
-    path(
-        "usuarios/",
-        include(("historias_server.user.urls", "usuarios"), namespace="usuarios"),
-    ),
-    path(
-        "",
-        include(
-            ("historias_server.historias.urls", "historias"), namespace="historias"
+
+urlpatterns = (
+    [
+        url(
+            "",
+            include(("historias_server.stats.urls", "stats"), namespace="estadisticas"),
         ),
-    ),
-    path(
-        "",
-        include(
-            ("historias_server.alimentacion.urls", "alimentacion"),
-            namespace="alimentacion",
+        path("admin/", admin.site.urls),
+        path("accounts/", include("allauth.urls")),
+        path(
+            "usuarios/",
+            include(("historias_server.user.urls", "usuarios"), namespace="usuarios"),
         ),
-    ),
-    path(
-        "",
-        include(
-            ("historias_server.medicacion.urls", "medicacion"), namespace="medicacion"
+        path(
+            "",
+            include(
+                ("historias_server.historias.urls", "historias"), namespace="historias"
+            ),
         ),
-    ),
-    path('sentry-debug/', trigger_error),
-]
+        path(
+            "",
+            include(
+                ("historias_server.alimentacion.urls", "alimentacion"),
+                namespace="alimentacion",
+            ),
+        ),
+        path(
+            "",
+            include(
+                ("historias_server.medicacion.urls", "medicacion"),
+                namespace="medicacion",
+            ),
+        ),
+        path("sentry-debug/", trigger_error),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
 
 
 if settings.DEBUG:
@@ -59,5 +68,4 @@ if settings.DEBUG:
 
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
-        
     ]

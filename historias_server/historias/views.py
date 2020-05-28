@@ -21,6 +21,7 @@ from .forms import CreateHistoriaForm, UpdateHistoriaForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
+from wkhtmltopdf.views import PDFTemplateView
 
 
 class CreateHistoriaView(LoginRequiredMixin, CreateView):
@@ -257,9 +258,29 @@ class HistoriaListView(LoginRequiredMixin, ListView):
 
         return context
 
+
 class SendReceipt(LoginRequiredMixin, View):
     def get(self, request, uuid, *args, **kwargs):
         historia = get_object_or_404(HistoriaClinica, uuid=uuid)
-        return redirect(reverse(
-            "historias:lista-historias", kwargs={"uuid": historia.paciente.uuid}
-        ))
+        historia.enviar_recetas()
+        return redirect(
+            reverse(
+                "historias:lista-historias", kwargs={"uuid": historia.paciente.uuid}
+            )
+        )
+
+
+class HistoriaPDFReportView(LoginRequiredMixin, PDFTemplateView):
+    template_name = "historias/pdf_report.html"
+    filename = None
+    cmd_options = {
+        "margin-top": 20,
+        "margin-left": 20,
+        "margin-right": 20,
+        "margin-bottom": 20,
+    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["historia"] = get_object_or_404(HistoriaClinica, uuid=kwargs["uuid"])
+        return context

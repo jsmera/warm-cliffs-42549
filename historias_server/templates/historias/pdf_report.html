@@ -1,0 +1,734 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/paper-dashboard.css' %}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'demo/demo.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+    <style>
+      table, .table, thead{
+        border-top: 0px !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h2>NUTRIPEDIA</h2>
+
+    <div>
+      <div class="card-title">
+        <h3>Ficha tecnica</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Fecha de creacion
+                </label>
+                <div class="controls">
+                  <input value="{{historia.fecha_creacion|date:"D d M Y"}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Fecha de actualizacion
+                </label>
+                <div class="controls">
+                  <input value="{{historia.fecha_actualizacion|date:"D d M Y"}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Radicado
+                </label>
+                <div class="controls">
+                  <input value="{{historia.uuid}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Nombre
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.nombre_perfil}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Estado civil
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.get_estado_civil_display}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Tipo de documento
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.get_tipo_documento_display}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Numero de documento
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.num_documento}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Direccion
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.direccion}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Telefono
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.telefono}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Fecha de nacimiento
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.fecha_nacimiento|date:"D d M Y"}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Correo electronico
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.email}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Genero
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.paciente.get_genero_display}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Nutricionista
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.nutricionista.nombre_perfil}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+                <div class="control-group">
+                  <label class="control-label">
+                    Correo electronico del nutricionista
+                  </label>
+                  <div class="controls">
+                    <input value="{{historia.nutricionista.email}}" disabled type="text" name="peso_actual" class="form-control">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="card-title">
+        <h3>Habitos</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Duracion del ejercicio (en minutos)
+                </label>
+                <div class="controls">
+                  <input value="{{historia.duracion_ejercicio}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Frecuencia del ejercicio
+                </label>
+                <div class="controls">
+                  <input value="{{historia.get_frecuencia_ejercicio_display}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Fecha de inicio del ejercicio
+                </label>
+                <div class="controls">
+                  <input value="{{historia.inicio_ejercicio}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Nivel del apetito
+                </label>
+                <div class="controls">
+                  <input value="{{historia.get_nivel_apetito_display}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Hora de mayor apetito
+                </label>
+                <div class="controls">
+                  <input value="{{historia.get_hora_mayor_apetito_display}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  Cantidad de comidas al dia
+                </label>
+                <div class="controls">
+                  <input value="{{historia.cant_comidas}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Alimentacion</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Alimento </th>
+                <th> Calorias </th>
+                <th> Frecuencia </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for alimento in historia.lineaconsumo_set.all %}
+                <tr>
+                  <td>{{alimento.alimento.nombre_alimento}}</td>
+                  <td>{{alimento.alimento.calorias}} Kcal</td>
+                  <td>{{alimento.get_frecuencia_display}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div class="card-title">
+        <h3>Medidas antropometricas</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.peso_actual}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.peso_habitual}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.estatura}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.pliegueCutaneoTri}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.pliegueCutaneoBi}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.pliegueCutaneoSub}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.pliegueCutaneoSupra}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.circ_brazo}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.circ_cintura}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.circ_cadera}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.circ_abdominal}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.peso_teorico}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.porcent_peso_teorico}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.porcent_peso_habitual}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.indice_masa_corporal}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.porcent_grasa_corporal}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.grasa_corporal_tot}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.masa_libre_grasa}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group ">
+              <div class="control-group">
+                <label class="control-label">
+                  
+                </label>
+                <div class="controls">
+                  <input value="{{historia.masa_muscular_total}}" disabled type="text" name="peso_actual" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Medicamentos</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Medicamento </th>
+                <th> Posologia </th>
+                <th> Frecuencia </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for medicina in historia.lineamedicamento_set.all %}
+                <tr>
+                  <td>{{medicina.medicamento.nombre_medicamento}}</td>
+                  <td>{{medicina.posologia}}</td>
+                  <td>{{medicina.get_frecuencia_display}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Alergias</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Causa </th>
+                <th> Efecto </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for alergia in historia.lineaalergia_set.all %}
+                <tr>
+                  <td>{{alergia.causa}}</td>
+                  <td>{{alergia.efectos_secundarios}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Preguntas</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Pregunta </th>
+                <th> Respuesta </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pregunta in historia.pregunta_set.all %}
+                <tr>
+                  <td>{{pregunta.pregunta}}</td>
+                  <td>{{pregunta.respuesta}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Diagnostico</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" width="100%">
+              <div id="div_id_diagnostico" class="control-group" width="100%">
+                <div class="controls" width="100%">
+                  <textarea disabled name="diagnostico" cols="110" rows="20" class="textarea" id="id_diagnostico" spellcheck="false">
+                    {{historia.diagnostico}}
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Receta</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Medicamento </th>
+                <th> Posologia </th>
+                <th> Frecuencia </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for medicina in historia.lineareceta_set.all %}
+                <tr>
+                  <td>{{medicina.medicamento.nombre_medicamento}}</td>
+                  <td>{{medicina.posologia}}</td>
+                  <td>{{medicina.get_frecuencia_display}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card-title">
+        <h3>Dieta</h3>
+        <hr>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th> Alimento </th>
+                <th> Calorias </th>
+                <th> Frecuencia </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for alimento in historia.lineadieta_set.all %}
+                <tr>
+                  <td>{{alimento.alimento.nombre_alimento}}</td>
+                  <td>{{alimento.alimento.calorias}} Kcal</td>
+                  <td>{{alimento.get_frecuencia_display}}</td>
+                </tr>
+              {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

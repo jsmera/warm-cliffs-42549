@@ -6,12 +6,15 @@
 
         <div class="card-header ">
             <div class="row">
-                <div class="col-md-9 pr-4">
+                <div class="col-md-8 pr-4">
                     <h4 class="card-title">Historia clinica</h4>
                 </div>
                 {% if object %}
-                    <div class="col-md-3 pl-1 d-flex justify-content-end align-items-center">
+                    <div class="col-md-2 pr-1 d-flex justify-content-end align-items-center">
                         <a href="{% url 'historias:enviar-historia' object.uuid %}" class="btn btn-primary btn-round  btn-block">Enviar Receta</a>
+                    </div>
+                    <div class="col-md-2 pl-1 d-flex justify-content-end align-items-center">
+                        <a target="_blank" href="{% url 'historias:report-pdf' object.uuid %}" class="btn btn-primary btn-round  btn-block">Exportar PDF</a>
                     </div>
                 {% endif %}
             </div>
@@ -19,7 +22,7 @@
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
-                    <h5>Hábito</h5>
+                    <h5>Hábitos</h5>
                     <hr>
 
                     <div class="row">
