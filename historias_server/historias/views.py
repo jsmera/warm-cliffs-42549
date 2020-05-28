@@ -260,7 +260,6 @@ class HistoriaListView(LoginRequiredMixin, ListView):
 class SendReceipt(LoginRequiredMixin, View):
     def get(self, request, uuid, *args, **kwargs):
         historia = get_object_or_404(HistoriaClinica, uuid=uuid)
-        historia.enviar_recetas()
         return redirect(reverse(
             "historias:lista-historias", kwargs={"uuid": historia.paciente.uuid}
         ))
