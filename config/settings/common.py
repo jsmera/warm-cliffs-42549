@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "anymail",
 ]
 
 SITE_ID = 1
@@ -159,13 +158,10 @@ CRISPY_CLASS_CONVERTERS = {
     "numberinput": "form-control",
 }
 
-ANYMAIL = {
-    # (exact settings here depend on your ESP...)
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-    # "MAILGUN_SENDER_DOMAIN": 'sandbox45e44551e0b04f5fb6f1b4077799e98d.mailgun.org',  # your Mailgun domain, if needed
-}
 
-EMAIL_BACKEND = (
-    "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
-)
-DEFAULT_FROM_EMAIL = "you@example.com"  # if you don't already have this in settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env("EMAIL_USE_TLS")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD") 
