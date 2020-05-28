@@ -1,1 +1,3 @@
+:repo:deb http://cz.archive.ubuntu.com/ubuntu artful main universe
 wkthmltopdf
+libssl1.0.0
