@@ -8,6 +8,7 @@ MIDDLEWARE += (
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# import django_heroku
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import django_heroku
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
