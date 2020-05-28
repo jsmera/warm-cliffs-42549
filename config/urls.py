@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 urlpatterns = [
     url(
@@ -48,11 +50,14 @@ urlpatterns = [
             ("historias_server.medicacion.urls", "medicacion"), namespace="medicacion"
         ),
     ),
+    path('sentry-debug/', trigger_error),
 ]
+
 
 if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
+        
     ]
