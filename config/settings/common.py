@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "anymail",
 ]
 
 SITE_ID = 1
@@ -155,4 +156,16 @@ CRISPY_CLASS_CONVERTERS = {
     "select": "form-control",
     "passwordinput": "form-control",
     "dateinput": "form-control",
+    "numberinput": "form-control",
 }
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    # "MAILGUN_SENDER_DOMAIN": 'sandbox45e44551e0b04f5fb6f1b4077799e98d.mailgun.org',  # your Mailgun domain, if needed
+}
+
+EMAIL_BACKEND = (
+    "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+)
+DEFAULT_FROM_EMAIL = "you@example.com"  # if you don't already have this in settings

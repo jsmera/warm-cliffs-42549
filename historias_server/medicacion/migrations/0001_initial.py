@@ -8,24 +8,40 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Medicacion',
+            name="Medicacion",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nombre_medicamento', models.CharField(blank=True, max_length=30, verbose_name='nombres')),
-                ('descripcion', models.TextField(default='')),
-                ('unidad', models.FloatField(blank=True, default=None, null=True)),
-                ('cant_sodio', models.FloatField(blank=True, default=None, null=True)),
-                ('cant_calcio', models.FloatField(blank=True, default=None, null=True)),
-                ('cant_magnesio', models.FloatField(blank=True, default=None, null=True)),
-                ('uuid', shortuuidfield.fields.ShortUUIDField(blank=True, editable=False, max_length=22)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nombre_medicamento",
+                    models.CharField(blank=True, max_length=30, verbose_name="nombres"),
+                ),
+                ("descripcion", models.TextField(default="")),
+                ("unidad", models.FloatField(blank=True, default=None, null=True)),
+                ("cant_sodio", models.FloatField(blank=True, default=None, null=True)),
+                ("cant_calcio", models.FloatField(blank=True, default=None, null=True)),
+                (
+                    "cant_magnesio",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "uuid",
+                    shortuuidfield.fields.ShortUUIDField(
+                        blank=True, editable=False, max_length=22
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]

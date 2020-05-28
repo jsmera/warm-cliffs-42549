@@ -7,13 +7,15 @@ import shortuuidfield.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0001_initial'),
+        ("user", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usuario',
-            name='uuid',
-            field=shortuuidfield.fields.ShortUUIDField(blank=True, editable=False, max_length=22),
+            model_name="usuario",
+            name="uuid",
+            field=shortuuidfield.fields.ShortUUIDField(
+                blank=True, editable=False, max_length=22
+            ),
         ),
     ]

@@ -6,18 +6,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('historias', '0002_auto_20200521_1954'),
+        ("historias", "0002_auto_20200521_1954"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historiaclinica',
-            name='fecha_actualizacion',
+            model_name="historiaclinica",
+            name="fecha_actualizacion",
             field=models.DateField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='historiaclinica',
-            name='hora_mayor_apetito',
-            field=models.CharField(choices=[('0h', '0 AM'), ('1h', '1 AM'), ('2h', '2 AM'), ('3h', '3 AM'), ('4h', '4 AM'), ('5h', '5 AM'), ('6h', '6 AM'), ('7h', '7 AM'), ('8h', '8 AM'), ('9h', '9 AM'), ('10h', '10 AM'), ('11h', '11 AM'), ('12h', '12 PM'), ('13h', '1 PM'), ('14h', '2 PM'), ('15h', '3 PM'), ('16h', '4 PM'), ('17h', '5 PM'), ('18h', '6 PM'), ('19h', '7 PM'), ('20h', '8 PM'), ('21h', '9 PM'), ('22h', '10 PM'), ('23h', '11 PM')], default='0h', max_length=4),
+            model_name="historiaclinica",
+            name="hora_mayor_apetito",
+            field=models.CharField(
+                choices=[
+                    ("0h", "0 AM"),
+                    ("1h", "1 AM"),
+                    ("2h", "2 AM"),
+                    ("3h", "3 AM"),
+                    ("4h", "4 AM"),
+                    ("5h", "5 AM"),
+                    ("6h", "6 AM"),
+                    ("7h", "7 AM"),
+                    ("8h", "8 AM"),
+                    ("9h", "9 AM"),
+                    ("10h", "10 AM"),
+                    ("11h", "11 AM"),
+                    ("12h", "12 PM"),
+                    ("13h", "1 PM"),
+                    ("14h", "2 PM"),
+                    ("15h", "3 PM"),
+                    ("16h", "4 PM"),
+                    ("17h", "5 PM"),
+                    ("18h", "6 PM"),
+                    ("19h", "7 PM"),
+                    ("20h", "8 PM"),
+                    ("21h", "9 PM"),
+                    ("22h", "10 PM"),
+                    ("23h", "11 PM"),
+                ],
+                default="0h",
+                max_length=4,
+            ),
         ),
     ]

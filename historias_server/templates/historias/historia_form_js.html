@@ -4,10 +4,62 @@
       return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
     }
 
+    function clone(form_name) {
+      let total = Number($('#id_' + form_name + '-TOTAL_FORMS').val());
+      let newElement = $('#id_' + form_name + '-' + (total-1) + '-id').clone();
+      newElement.find(':input:not([type=button]):not([type=submit]):not([type=reset])').each(function() {
+        var name = $(this).attr('name').replace('-' + (total-1) + '-', '-' + total + '-');
+        var id = 'id_' + name;
+        $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
+      });
+      newElement.find('label').each(function() {
+          var forValue = $(this).attr('for');
+          if (forValue) {
+            forValue = forValue.replace('-' + (total-1) + '-', '-' + total + '-');
+            $(this).attr({'for': forValue});
+          }
+      });
+      newElement.attr({'id': 'id_' + form_name + '-' + (total) + '-id'})
+      total++;
+      $('#id_' + form_name + '-TOTAL_FORMS').val(total);
+      $('#id_' + form_name + '-' + (total-2) + '-id').after(newElement);
+    }
+
     $('#id_inicio_ejercicio').datepicker({
       format: "yyyy-mm-dd",
       language: "es",
       orientation: "bottom auto"
+    });
+
+    $(document).on('click', '#clonealimentacion', function(e){
+        e.preventDefault();
+        clone('lineaconsumo_set');
+        return false;
+    });
+    $(document).on('click', '#clonemedicamentos', function(e){
+        e.preventDefault();
+        clone('lineamedicamento_set');
+        return false;
+    });
+    $(document).on('click', '#clonealergias', function(e){
+        e.preventDefault();
+        clone('lineaalergia_set');
+        return false;
+    });
+    $(document).on('click', '#clonepregunta', function(e){
+        e.preventDefault();
+        clone('pregunta_set');
+        return false;
+    });
+    $(document).on('click', '#clonereceta', function(e){
+        e.preventDefault();
+        clone('lineareceta_set');
+        return false;
+    });
+    $(document).on('click', '#clonedieta', function(e){
+        e.preventDefault();
+        clone('lineadieta_set');
+        return false;
     });
 
    

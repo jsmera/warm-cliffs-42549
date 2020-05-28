@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('alimentacion', '0004_auto_20200526_1726'),
+        ("alimentacion", "0004_auto_20200526_1726"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='alimentacion',
-            name='lista_negra',
-            field=models.CharField(choices=[(0, 'No'), (1, 'Si')], default='No', max_length=2),
+            model_name="alimentacion",
+            name="lista_negra",
+            field=models.CharField(
+                choices=[(0, "No"), (1, "Si")], default="No", max_length=2
+            ),
         ),
     ]

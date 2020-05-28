@@ -8,6 +8,7 @@ from .models import Alimentacion
 from .forms import CreateAlimentacionForm, UpdateAlimentacionForm
 from django.db.models import Q
 
+
 class CreateAlimentacionView(LoginRequiredMixin, CreateView):
     template_name = "alimentacion/alimentacion_create.html"
     model = Alimentacion
@@ -16,6 +17,7 @@ class CreateAlimentacionView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse("alimentacion:lista-alimentacion")
 
+
 class UpdateAlimentacionView(LoginRequiredMixin, UpdateView):
     template_name = "alimentacion/alimentacion_update.html"
     model = Alimentacion
@@ -23,10 +25,11 @@ class UpdateAlimentacionView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("alimentacion:lista-alimentacion")
-    
+
     def get_object(self, queryset=None):
         obj = get_object_or_404(Alimentacion, uuid=self.kwargs["uuid"])
         return obj
+
 
 class DeleteAlimentacionView(LoginRequiredMixin, DeleteView):
     model = Alimentacion
@@ -40,12 +43,15 @@ class DeleteAlimentacionView(LoginRequiredMixin, DeleteView):
 class AlimentacionListView(LoginRequiredMixin, ListView):
     model = Alimentacion
     paginate_by = 10
-    def get_queryset(self):
-        nombre_alimento = self.request.GET.get('nombre_alimento', "")
 
-        query = Alimentacion.objects.filter((Q(nombre_alimento__icontains=nombre_alimento)))
+    def get_queryset(self):
+        nombre_alimento = self.request.GET.get("nombre_alimento", "")
+
+        query = Alimentacion.objects.filter(
+            (Q(nombre_alimento__icontains=nombre_alimento))
+        )
         return query
-        
+
     def get_context_data(self, **kwargs):
         base_url = self.request.GET.copy()
         if "page" in base_url:
@@ -53,4 +59,3 @@ class AlimentacionListView(LoginRequiredMixin, ListView):
         context = super(AlimentacionListView, self).get_context_data(**kwargs)
 
         return context
-

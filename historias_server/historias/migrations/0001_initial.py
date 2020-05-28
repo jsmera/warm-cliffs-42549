@@ -12,49 +12,156 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('user', '0003_paciente'),
+        ("user", "0003_paciente"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='HistoriaClinica',
+            name="HistoriaClinica",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha_creacion', models.DateField(default=datetime.datetime.now)),
-                ('fecha_actualizacion', models.DateField(default=datetime.datetime.now)),
-                ('duracion_ejercicio', models.FloatField(blank=True, default=None, null=True)),
-                ('frecuencia_ejercicio', models.CharField(choices=[('0D', '0 Dias'), ('1D', '1 Dia'), ('2D', '2 Dias'), ('3D', '3 Dias'), ('4D', '4 Dias'), ('5D', '5 Dias'), ('6D', '6 Dias'), ('7D', '7 Dias')], default='0D', max_length=2)),
-                ('inicio_ejercicio', models.DateField(default=datetime.datetime.now)),
-                ('nivel_apetito', models.CharField(choices=[('BA', 'Bajo'), ('ME', 'Medio'), ('AL', 'Alto')], default='AL', max_length=2)),
-                ('hora_mayor_apetito', models.DateTimeField(blank=True, default=None, null=True)),
-                ('diagnostico', models.TextField(default='')),
-                ('cant_comidas', models.IntegerField(blank=True, default=None, null=True)),
-                ('peso_actual', models.FloatField(blank=True, default=None, null=True)),
-                ('peso_habitual', models.FloatField(blank=True, default=None, null=True)),
-                ('estatura', models.IntegerField(blank=True, default=None, null=True)),
-                ('pliegueCutaneoTri', models.FloatField(blank=True, default=None, null=True)),
-                ('pliegueCutaneoBi', models.FloatField(blank=True, default=None, null=True)),
-                ('pliegueCutaneoSub', models.FloatField(blank=True, default=None, null=True)),
-                ('pliegueCutaneoSupra', models.FloatField(blank=True, default=None, null=True)),
-                ('circ_brazo', models.FloatField(blank=True, default=None, null=True)),
-                ('circ_cintura', models.FloatField(blank=True, default=None, null=True)),
-                ('circ_cadera', models.FloatField(blank=True, default=None, null=True)),
-                ('circ_abdominal', models.FloatField(blank=True, default=None, null=True)),
-                ('peso_teorico', models.FloatField(blank=True, default=None, null=True)),
-                ('porcent_peso_teorico', models.FloatField(blank=True, default=None, null=True)),
-                ('porcent_peso_habitual', models.FloatField(blank=True, default=None, null=True)),
-                ('indice_masa_corporal', models.FloatField(blank=True, default=None, null=True)),
-                ('porcent_grasa_corporal', models.FloatField(blank=True, default=None, null=True)),
-                ('grasa_corporal_tot', models.FloatField(blank=True, default=None, null=True)),
-                ('masa_libre_grasa', models.FloatField(blank=True, default=None, null=True)),
-                ('masa_muscular_total', models.FloatField(blank=True, default=None, null=True)),
-                ('uuid', shortuuidfield.fields.ShortUUIDField(blank=True, editable=False, max_length=22)),
-                ('nutricionista', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
-                ('paciente', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='user.Paciente')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("fecha_creacion", models.DateField(default=datetime.datetime.now)),
+                (
+                    "fecha_actualizacion",
+                    models.DateField(default=datetime.datetime.now),
+                ),
+                (
+                    "duracion_ejercicio",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "frecuencia_ejercicio",
+                    models.CharField(
+                        choices=[
+                            ("0D", "0 Dias"),
+                            ("1D", "1 Dia"),
+                            ("2D", "2 Dias"),
+                            ("3D", "3 Dias"),
+                            ("4D", "4 Dias"),
+                            ("5D", "5 Dias"),
+                            ("6D", "6 Dias"),
+                            ("7D", "7 Dias"),
+                        ],
+                        default="0D",
+                        max_length=2,
+                    ),
+                ),
+                ("inicio_ejercicio", models.DateField(default=datetime.datetime.now)),
+                (
+                    "nivel_apetito",
+                    models.CharField(
+                        choices=[("BA", "Bajo"), ("ME", "Medio"), ("AL", "Alto")],
+                        default="AL",
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "hora_mayor_apetito",
+                    models.DateTimeField(blank=True, default=None, null=True),
+                ),
+                ("diagnostico", models.TextField(default="")),
+                (
+                    "cant_comidas",
+                    models.IntegerField(blank=True, default=None, null=True),
+                ),
+                ("peso_actual", models.FloatField(blank=True, default=None, null=True)),
+                (
+                    "peso_habitual",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                ("estatura", models.IntegerField(blank=True, default=None, null=True)),
+                (
+                    "pliegueCutaneoTri",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "pliegueCutaneoBi",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "pliegueCutaneoSub",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "pliegueCutaneoSupra",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                ("circ_brazo", models.FloatField(blank=True, default=None, null=True)),
+                (
+                    "circ_cintura",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                ("circ_cadera", models.FloatField(blank=True, default=None, null=True)),
+                (
+                    "circ_abdominal",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "peso_teorico",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "porcent_peso_teorico",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "porcent_peso_habitual",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "indice_masa_corporal",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "porcent_grasa_corporal",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "grasa_corporal_tot",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "masa_libre_grasa",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "masa_muscular_total",
+                    models.FloatField(blank=True, default=None, null=True),
+                ),
+                (
+                    "uuid",
+                    shortuuidfield.fields.ShortUUIDField(
+                        blank=True, editable=False, max_length=22
+                    ),
+                ),
+                (
+                    "nutricionista",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "paciente",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="user.Paciente",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]

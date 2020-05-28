@@ -8,28 +8,80 @@ import shortuuidfield.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0002_usuario_uuid'),
+        ("user", "0002_usuario_uuid"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Paciente',
+            name="Paciente",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(blank=True, max_length=30, verbose_name='nombres')),
-                ('last_name', models.CharField(blank=True, max_length=150, verbose_name='apellidos')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='correo electrónico')),
-                ('fecha_nacimiento', models.DateField(default=django.utils.timezone.now)),
-                ('tipo_documento', models.CharField(choices=[('CC', 'Cedula'), ('TI', 'Tarjeta de identidad')], default='CC', max_length=2)),
-                ('genero', models.CharField(choices=[('F', 'Femenino'), ('M', 'Masculino')], default='M', max_length=2)),
-                ('num_documento', models.CharField(default='', max_length=20)),
-                ('estado_civil', models.CharField(choices=[('SO', 'Soltero'), ('CA', 'Casado'), ('DI', 'Divorciado')], default='SO', max_length=2)),
-                ('telefono', models.CharField(default='', max_length=50)),
-                ('direccion', models.CharField(default='', max_length=100)),
-                ('uuid', shortuuidfield.fields.ShortUUIDField(blank=True, editable=False, max_length=22)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(blank=True, max_length=30, verbose_name="nombres"),
+                ),
+                (
+                    "last_name",
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="apellidos"
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        blank=True, max_length=254, verbose_name="correo electrónico"
+                    ),
+                ),
+                (
+                    "fecha_nacimiento",
+                    models.DateField(default=django.utils.timezone.now),
+                ),
+                (
+                    "tipo_documento",
+                    models.CharField(
+                        choices=[("CC", "Cedula"), ("TI", "Tarjeta de identidad")],
+                        default="CC",
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "genero",
+                    models.CharField(
+                        choices=[("F", "Femenino"), ("M", "Masculino")],
+                        default="M",
+                        max_length=2,
+                    ),
+                ),
+                ("num_documento", models.CharField(default="", max_length=20)),
+                (
+                    "estado_civil",
+                    models.CharField(
+                        choices=[
+                            ("SO", "Soltero"),
+                            ("CA", "Casado"),
+                            ("DI", "Divorciado"),
+                        ],
+                        default="SO",
+                        max_length=2,
+                    ),
+                ),
+                ("telefono", models.CharField(default="", max_length=50)),
+                ("direccion", models.CharField(default="", max_length=100)),
+                (
+                    "uuid",
+                    shortuuidfield.fields.ShortUUIDField(
+                        blank=True, editable=False, max_length=22
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]

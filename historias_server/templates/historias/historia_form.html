@@ -1,346 +1,471 @@
 {% load crispy_forms_tags %}
 {% load static %}
 <div class="row">
-    <div class="col-md-1"></div>
-  <div class="col-md-10">
+  <div class="col-md-12">
     <div class="card card-user">
-        <br/>
-        <div class="row">
-            <div class="col-md-4 pr-1">
-            </div>
-            
-            <div class="col-md-4 pr-1" style="text-align:center" >
-            <h5 class="card-title" style="margin-top: 20px;">Historia clinica</h5>
-            </div>
-            <div class="col-md-4 pr-1">
-            </div>
+
+        <div class="card-header ">
+            <h4 class="card-title">Historia clinica</h4>
         </div>
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
-                 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                    <div class="form-group" >
-                        {{ form.duracion_ejercicio|as_crispy_field }}
-                    </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
+                    <h5>Hábito</h5>
+                    <hr>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.frecuencia_ejercicio|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group" >
+                                {{ form.duracion_ejercicio|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                {{ form.frecuencia_ejercicio|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                {{ form.inicio_ejercicio|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.inicio_ejercicio|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-4 pr-1">
+                            <div class="form-group">
+                                {{ form.nivel_apetito|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-1">
+                            <div class="form-group">
+                                {{ form.hora_mayor_apetito|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 pl-1">
+                            <div class="form-group">
+                                {{ form.cant_comidas|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.nivel_apetito|as_crispy_field }}
+
+                    <h5>Alimentación</h5>
+                    <hr>
+                    {{ consumo_form.management_form }}
+                    {% for form in consumo_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            <div class="row align-items-center">
+                                {% if object %}
+                                    {{ form.id }}
+                                {% endif %}
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.alimento|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        {{ form.frecuencia|as_crispy_field }}
+                                    </div>
+                                </div>
+                                {{ form.errors}}
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonealimentacion" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.hora_mayor_apetito|as_crispy_field }}
+                    <h5>Medidas antropométricas</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group pr-1">
+                                {{ form.peso_actual|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.peso_habitual|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.estatura|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                {{ form.pliegueCutaneoTri|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                    <div class="form-group">
-                        {{ form.cant_comidas|as_crispy_field }}
-                    </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.peso_actual|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.pliegueCutaneoBi|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.pliegueCutaneoSub|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.pliegueCutaneoSupra|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                {{ form.circ_brazo|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.peso_habitual|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.circ_cintura|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 ppx-1-1">
+                            <div class="form-group">
+                                {{ form.circ_cadera|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.circ_abdominal|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                {{ form.peso_teorico|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.estatura|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.porcent_peso_teorico|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.porcent_peso_habitual|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                {{ form.indice_masa_corporal|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                {{ form.porcent_grasa_corporal|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.pliegueCutaneoTri|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.grasa_corporal_tot|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.masa_libre_grasa|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                {{ form.masa_muscular_total|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.pliegueCutaneoBi|as_crispy_field }}
+                    <h5>Medicamentos</h5>
+                    <hr>
+                    {{ medicamentos_form.management_form }}
+                    {% for form in medicamentos_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            {% if object %}
+                                {{ form.id }}
+                            {% endif %}
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.medicamento|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.posologia|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.frecuencia|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonemedicamentos" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.pliegueCutaneoSub|as_crispy_field }}
+                    <h5>Alergias</h5>
+                    <hr>
+                    {{ alergias_form.management_form }}
+                    {% for form in alergias_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            {% if object %}
+                                {{ form.id }}
+                            {% endif %}
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.causa|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        {{ form.efectos_secundarios|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonealergias" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.pliegueCutaneoSupra|as_crispy_field }}
+                    <h5>Preguntas</h5>
+                    <hr>
+                    {{ pregunta_form.management_form }}
+                    {% for form in pregunta_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            {% if object %}
+                                {{ form.id }}
+                            {% endif %}
+                            <div class="row align-items-center">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        {{ form.pregunta|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        {{ form.respuesta|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonepregunta" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.circ_brazo|as_crispy_field }}
+                    <h5>Diagnostico</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                {{ form.diagnostico|as_crispy_field }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.circ_cintura|as_crispy_field }}
+                    <h5>Receta</h5>
+                    <hr>
+                    {{ receta_form.management_form }}
+                    {% for form in receta_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            {% if object %}
+                                {{ form.id }}
+                            {% endif %}
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.medicamento|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.posologia|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.frecuencia|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonereceta" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.circ_cadera|as_crispy_field }}
+                    <h5>Dieta</h5>
+                    <hr>
+                    {{ dieta_form.management_form }}
+                    {% for form in dieta_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            {% if object %}
+                                {{ form.id }}
+                            {% endif %}
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.alimento|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.cantidad|as_crispy_field }}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.frecuencia|as_crispy_field }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="clonedieta" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.circ_abdominal|as_crispy_field }}
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                        </div>
+                        <div class="col-md-4 pr-1">
+                            <button type="submit" class="btn btn-primary btn-round">Guardar</button>
+                        </div>
+                        <div class="col-md-3 pr-1">
                         </div>
                     </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.peso_teorico|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.porcent_peso_teorico|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.porcent_peso_habitual|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.indice_masa_corporal|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.porcent_grasa_corporal|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.grasa_corporal_tot|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.masa_libre_grasa|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.masa_muscular_total|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 pr-1">
-                    </div>
-                    <div class="col-md-6 pr-1">
-                        <div class="form-group">
-                            {{ form.diagnostico|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5 pr-1">
-                    </div>
-                    <div class="col-md-4 pr-1">
-                        <button type="submit" class="btn btn-primary btn-round">Guardar</button>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                    </div>
-                </div>
             </form>
         </div>
     </div>

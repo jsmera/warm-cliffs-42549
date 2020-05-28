@@ -8,6 +8,7 @@ from .models import Medicacion
 from .forms import CreateMedicacionForm, UpdateMedicacionForm
 from django.db.models import Q
 
+
 class CreateMedicacionView(LoginRequiredMixin, CreateView):
     template_name = "medicacion/medicacion_create.html"
     model = Medicacion
@@ -16,6 +17,7 @@ class CreateMedicacionView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse("medicacion:lista-medicacion")
 
+
 class UpdateMedicacionView(LoginRequiredMixin, UpdateView):
     template_name = "medicacion/medicacion_update.html"
     model = Medicacion
@@ -23,10 +25,11 @@ class UpdateMedicacionView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("medicacion:lista-medicacion")
-    
+
     def get_object(self, queryset=None):
         obj = get_object_or_404(Medicacion, uuid=self.kwargs["uuid"])
         return obj
+
 
 class DeleteMedicacionView(LoginRequiredMixin, DeleteView):
     model = Medicacion
@@ -40,12 +43,15 @@ class DeleteMedicacionView(LoginRequiredMixin, DeleteView):
 class MedicacionListView(LoginRequiredMixin, ListView):
     model = Medicacion
     paginate_by = 10
-    def get_queryset(self):
-        nombre_medicamento = self.request.GET.get('nombre_medicamento', "")
 
-        query = Medicacion.objects.filter((Q(nombre_medicamento__icontains=nombre_medicamento)))
+    def get_queryset(self):
+        nombre_medicamento = self.request.GET.get("nombre_medicamento", "")
+
+        query = Medicacion.objects.filter(
+            (Q(nombre_medicamento__icontains=nombre_medicamento))
+        )
         return query
-        
+
     def get_context_data(self, **kwargs):
         base_url = self.request.GET.copy()
         if "page" in base_url:
@@ -53,4 +59,3 @@ class MedicacionListView(LoginRequiredMixin, ListView):
         context = super(MedicacionListView, self).get_context_data(**kwargs)
 
         return context
-

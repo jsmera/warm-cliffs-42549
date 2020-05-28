@@ -6,38 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0004_auto_20200526_1609'),
+        ("user", "0004_auto_20200526_1609"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='paciente',
-            name='email',
-            field=models.EmailField(max_length=254, verbose_name='correo electrónico'),
+            model_name="paciente",
+            name="email",
+            field=models.EmailField(max_length=254, verbose_name="correo electrónico"),
         ),
         migrations.AlterField(
-            model_name='paciente',
-            name='first_name',
-            field=models.CharField(max_length=30, verbose_name='nombres'),
+            model_name="paciente",
+            name="first_name",
+            field=models.CharField(max_length=30, verbose_name="nombres"),
         ),
         migrations.AlterField(
-            model_name='paciente',
-            name='last_name',
-            field=models.CharField(max_length=150, verbose_name='apellidos'),
+            model_name="paciente",
+            name="last_name",
+            field=models.CharField(max_length=150, verbose_name="apellidos"),
         ),
         migrations.AlterField(
-            model_name='usuario',
-            name='email',
-            field=models.EmailField(max_length=254, verbose_name='correo electrónico'),
+            model_name="usuario",
+            name="email",
+            field=models.EmailField(max_length=254, verbose_name="correo electrónico"),
         ),
         migrations.AlterField(
-            model_name='usuario',
-            name='first_name',
-            field=models.CharField(max_length=30, verbose_name='nombres'),
+            model_name="usuario",
+            name="first_name",
+            field=models.CharField(max_length=30, verbose_name="nombres"),
         ),
         migrations.AlterField(
-            model_name='usuario',
-            name='last_name',
-            field=models.CharField(max_length=150, verbose_name='apellidos'),
+            model_name="usuario",
+            name="last_name",
+            field=models.CharField(max_length=150, verbose_name="apellidos"),
         ),
     ]

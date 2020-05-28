@@ -1,8 +1,11 @@
 from django.db import models
 from shortuuidfield import ShortUUIDField
 
+
 class DatosMedicacion(models.Model):
-    nombre_medicamento = models.CharField(blank=True, max_length=30, verbose_name="nombres")
+    nombre_medicamento = models.CharField(
+        blank=True, max_length=30, verbose_name="nombres"
+    )
     descripcion = models.TextField(default="", blank=True)
     unidad = models.FloatField(null=True, blank=True, default=None)
     cant_sodio = models.FloatField(null=True, blank=True, default=None)
@@ -15,3 +18,6 @@ class DatosMedicacion(models.Model):
 
 class Medicacion(DatosMedicacion):
     uuid = ShortUUIDField()
+
+    def __str__(self):
+        return self.nombre_medicamento

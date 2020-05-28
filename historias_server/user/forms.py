@@ -4,6 +4,7 @@ from django import forms
 from .models import Usuario
 from .models import Paciente
 
+
 class CreateUsuarioForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(CreateUsuarioForm, self).__init__(*args, **kwargs)
@@ -43,7 +44,7 @@ class CreateUsuarioForm(UserCreationForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
-            "genero":"Genero",
+            "genero": "Genero",
         }
         help_texts = {
             "username": "",
@@ -60,6 +61,7 @@ class CreateUsuarioForm(UserCreationForm):
         if rol == "admin":
             return True
         return False
+
 
 class UpdateUsuarioForm(ModelForm):
     class Meta:
@@ -90,7 +92,7 @@ class UpdateUsuarioForm(ModelForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
-            "genero" : "genero",
+            "genero": "genero",
         }
         help_texts = {
             "username": "",
@@ -109,13 +111,12 @@ class UpdateUsuarioForm(ModelForm):
         return False
 
 
-#-----------------------------------------------
+# -----------------------------------------------
 
 
 class CreatePacienteForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreatePacienteForm, self).__init__(*args, **kwargs)
-
 
     class Meta:
         model = Paciente
@@ -129,9 +130,9 @@ class CreatePacienteForm(ModelForm):
             "estado_civil",
             "telefono",
             "direccion",
-            "genero"
+            "genero",
         ]
-        #widgets = {"is_superuser": forms.HiddenInput(), "is_staff": forms.HiddenInput()}
+        # widgets = {"is_superuser": forms.HiddenInput(), "is_staff": forms.HiddenInput()}
         labels = {
             "email": "Correo electrónico",
             "num_documento": "Número de documento",
@@ -140,7 +141,7 @@ class CreatePacienteForm(ModelForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
-            "genero":"Genero"
+            "genero": "Genero",
         }
 
 
@@ -157,7 +158,7 @@ class UpdatePacienteForm(ModelForm):
             "estado_civil",
             "telefono",
             "direccion",
-            "genero"
+            "genero",
         ]
         labels = {
             "email": "Correo electrónico",
@@ -167,5 +168,5 @@ class UpdatePacienteForm(ModelForm):
             "first_name": "Nombres",
             "last_name": "Apellidos",
             "fecha_nacimiento": "Fecha de nacimiento",
-            "genero":"Genero"
+            "genero": "Genero",
         }
