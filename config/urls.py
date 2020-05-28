@@ -30,20 +30,20 @@ urlpatterns = [
         include(("historias_server.user.urls", "usuarios"), namespace="usuarios"),
     ),
     path(
-        "usuarios/",
+        "",
         include(
             ("historias_server.historias.urls", "historias"), namespace="historias"
         ),
     ),
     path(
-        "usuarios/",
+        "",
         include(
             ("historias_server.alimentacion.urls", "alimentacion"),
             namespace="alimentacion",
         ),
     ),
     path(
-        "usuarios/",
+        "",
         include(
             ("historias_server.medicacion.urls", "medicacion"), namespace="medicacion"
         ),

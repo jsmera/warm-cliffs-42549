@@ -3,6 +3,7 @@ from .views import (
     HistoriaListView,
     UpdateHistoriaView,
     DeleteHistoriaView,
+    SendReceipt
 )
 from django.conf.urls import url
 
@@ -26,5 +27,10 @@ urlpatterns = [
         r"^historias/(?P<uuid>[-\w]+)/eliminar-historias/$",
         DeleteHistoriaView.as_view(),
         name="eliminar-historias",
+    ),
+    url(
+        r"^historias/(?P<uuid>[-\w]+)/enviar/$",
+        SendReceipt.as_view(),
+        name="enviar-historia",
     ),
 ]

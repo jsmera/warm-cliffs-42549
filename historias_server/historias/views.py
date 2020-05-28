@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse, reverse_lazy
 from django.core.mail import send_mail
-from .models import *
+from .models import (
+    HistoriaClinica,
+    LineaAlergia,
+    LineaConsumo,
+    LineaMedicamento,
+    LineaReceta,
+    LineaDieta,
+    Pregunta,
+)
+from django.views import View
 from historias_server.user.models import Paciente
 from .forms import CreateHistoriaForm, UpdateHistoriaForm
 from django.db.models import Q
@@ -60,6 +70,7 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.paciente = get_object_or_404(Paciente, uuid=self.kwargs["uuid"])
+        form.instance.nutricionista = self.request.user
         return super(CreateHistoriaView, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
@@ -245,3 +256,11 @@ class HistoriaListView(LoginRequiredMixin, ListView):
         context["base_url"] = base_url.urlencode
 
         return context
+
+class SendReceipt(LoginRequiredMixin, View):
+    def get(self, request, uuid, *args, **kwargs):
+        historia = get_object_or_404(HistoriaClinica, uuid=uuid)
+        historia.enviar_recetas()
+        return redirect(reverse(
+            "historias:lista-historias", kwargs={"uuid": historia.paciente.uuid}
+        ))

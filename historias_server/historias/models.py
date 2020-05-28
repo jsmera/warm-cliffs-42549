@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from shortuuidfield import ShortUUIDField
 from django.utils import timezone
+from django.template.loader import get_template
+from django.template import Context
+from django.core.mail import EmailMultiAlternatives
 import datetime
 
 
@@ -88,6 +91,30 @@ class HistoriaClinica(DatosHistoria):
         "user.Paciente", models.SET_NULL, blank=True, null=True,
     )
     uuid = ShortUUIDField()
+
+    def enviar_recetas(self):
+        if self.paciente is not None:
+            receta = self.lineareceta_set.all()
+            dieta = self.lineadieta_set.all()
+            if len(receta) or len(dieta):
+                email = EmailMultiAlternatives(
+                    subject="Habemus dieta",
+                    body="Prueba",
+                    from_email="Nutripedia <barberprocesos@gmail.com>",
+                    to=[self.paciente.email],
+                )
+                template = get_template("historias/email.html").render(
+                    {
+                        "dieta": dieta,
+                        "receta": receta,
+                        "paciente": self.paciente,
+                        "nutricionista": self.nutricionista,
+                        "historia": self,
+                    }
+                )
+                email.attach_alternative(template, "text/html")
+                return email.send()
+        return 0
 
 
 class LineaAlergia(models.Model):
