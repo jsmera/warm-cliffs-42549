@@ -7,17 +7,16 @@ import shortuuidfield.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('historias', '0014_lineaenfermedad_uuid'),
+        ("historias", "0014_lineaenfermedad_uuid"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='lineaenfermedad',
-            name='uuid',
-        ),
+        migrations.RemoveField(model_name="lineaenfermedad", name="uuid",),
         migrations.AddField(
-            model_name='enfermedad',
-            name='uuid',
-            field=shortuuidfield.fields.ShortUUIDField(blank=True, editable=False, max_length=22),
+            model_name="enfermedad",
+            name="uuid",
+            field=shortuuidfield.fields.ShortUUIDField(
+                blank=True, editable=False, max_length=22
+            ),
         ),
     ]

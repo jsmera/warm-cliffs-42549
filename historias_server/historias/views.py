@@ -352,9 +352,7 @@ class EnfermedadListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         nombre_enfermedad = self.request.GET.get("nombre_enfermedad", "")
 
-        query = Enfermedad.objects.filter(
-            (Q(nombre__icontains=nombre_enfermedad))
-        )
+        query = Enfermedad.objects.filter((Q(nombre__icontains=nombre_enfermedad)))
         return query
 
     def get_context_data(self, **kwargs):
