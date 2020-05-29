@@ -107,6 +107,47 @@
                         </div>
                     </div>
 
+                    <h5>Enfermedades</h5>
+                    <hr>
+                    {{ enfermedad_form.management_form }}
+                    {% for form in enfermedad_form %}
+                        <div id="{{ form.id.auto_id }}">
+                            <div class="row align-items-center">
+                                {% if object %}
+                                    {{ form.id }}
+                                {% endif %}
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        {{ form.enfermedad|as_crispy_field }}
+                                    </div>
+                                </div>
+                                {{ form.errors}}
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                {{ form.DELETE }}
+                                                Eliminar
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row justify-content-end">
+                        <div class="col-2 d-flex justify-content-end">
+                            <button id="cloneenfermedad" class="btn btn-primary btn-fab btn-icon btn-round">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <h5>Medidas antropométricas</h5>
                     <hr>
                     <div class="row">

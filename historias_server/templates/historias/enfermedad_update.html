@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Editar Enfermedad: {{object.nombre}}{% endblock %}
+{% block nav_title %}Editar Enfermedad: {{object.nombre}}{% endblock %}
+
+{% block content %}
+  {% include "historias/enfermedad_form.html" %}
+{% endblock %}

@@ -5,6 +5,10 @@ from .views import (
     DeleteHistoriaView,
     SendReceipt,
     HistoriaPDFReportView,
+    EnfermedadListView,
+    CreateEnfermedadView,
+    UpdateEnfermedadView,
+    DeleteEnfermedadView,
 )
 from django.conf.urls import url
 
@@ -38,5 +42,25 @@ urlpatterns = [
         r"^historias/(?P<uuid>[-\w]+)/reporte/$",
         HistoriaPDFReportView.as_view(),
         name="report-pdf",
+    ),
+    url(
+        r"enfermedad/lista-enfermedad/$",
+        EnfermedadListView.as_view(),
+        name="lista-enfermedad",
+    ),
+    url(
+        r"enfermedad/crear-enfermedad/$",
+        CreateEnfermedadView.as_view(),
+        name="crear-enfermedad",
+    ),
+    url(
+        r"enfermedad/(?P<uuid>[-\w]+)/editar-enfermedad/$",
+        UpdateEnfermedadView.as_view(),
+        name="editar-enfermedad",
+    ),
+    url(
+        r"enfermedad/(?P<uuid>[-\w]+)/eliminar-enfermedad/$",
+        DeleteEnfermedadView.as_view(),
+        name="eliminar-enfermedad",
     ),
 ]

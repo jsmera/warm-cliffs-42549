@@ -207,3 +207,20 @@ class Pregunta(models.Model):
     )
     pregunta = models.CharField(max_length=100)
     respuesta = models.CharField(max_length=500)
+
+
+class Enfermedad(models.Model):
+    nombre = models.CharField(max_length=20)
+    uuid = ShortUUIDField()
+
+    def __str__(self):
+        return self.nombre
+
+
+class LineaEnfermedad(models.Model):
+    hisotoria_clinica = models.ForeignKey(
+        "historias.HistoriaClinica", models.SET_NULL, blank=True, null=True,
+    )
+    enfermedad = models.ForeignKey(
+        "historias.Enfermedad", models.SET_NULL, blank=True, null=True,
+    )

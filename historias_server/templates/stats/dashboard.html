@@ -4,15 +4,21 @@
 {% block content %}
     <div class="content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="justify-content-end align-items-center">
                     <a href="{% url 'alimentacion:lista-alimentacion' %}" class="btn btn-dark btn-round  btn-block">Alimentos</a>
                 </div>
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="justify-content-end align-items-center">
                     <a href="{% url 'medicacion:lista-medicacion' %}" class="btn btn-dark btn-round  btn-block">Medicinas</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="justify-content-end align-items-center">
+                    <a href="{% url 'historias:lista-enfermedad' %}" class="btn btn-dark btn-round  btn-block">Enfermedades</a>
                 </div>
             </div>
            

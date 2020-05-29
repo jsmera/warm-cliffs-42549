@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import HistoriaClinica
+from .models import HistoriaClinica, Enfermedad
 
 
 class CreateHistoriaForm(ModelForm):
@@ -128,4 +128,31 @@ class UpdateHistoriaForm(ModelForm):
             "grasa_corporal_tot": "Grasa corporal total",
             "masa_libre_grasa": "Masa libre de grasa",
             "masa_muscular_total": "Masa muscular total",
+        }
+
+
+class CreateEnfermedadForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateEnfermedadForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Enfermedad
+        fields = [
+            "nombre",
+        ]
+
+        labels = {
+            "nombre": "Nombre de la enfermedad",
+        }
+
+
+class UpdateEnfermedadForm(ModelForm):
+    class Meta:
+        model = Enfermedad
+        fields = [
+            "nombre",
+        ]
+
+        labels = {
+            "nombre": "Nombre de la enfermedad",
         }

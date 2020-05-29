@@ -14,10 +14,17 @@ from .models import (
     LineaReceta,
     LineaDieta,
     Pregunta,
+    LineaEnfermedad,
+    Enfermedad,
 )
 from django.views import View
 from historias_server.user.models import Paciente
-from .forms import CreateHistoriaForm, UpdateHistoriaForm
+from .forms import (
+    CreateHistoriaForm,
+    UpdateHistoriaForm,
+    CreateEnfermedadForm,
+    UpdateEnfermedadForm,
+)
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
@@ -58,6 +65,9 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
     PreguntaInlineFormSet = inlineformset_factory(
         HistoriaClinica, Pregunta, fields=("pregunta", "respuesta",), extra=1,
     )
+    LineaEnfermedadInlineFormSet = inlineformset_factory(
+        HistoriaClinica, LineaEnfermedad, fields=("enfermedad",), extra=1,
+    )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,6 +77,7 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
         context["receta_form"] = self.RecetaInlineFormSet()
         context["dieta_form"] = self.DietaInlineFormSet()
         context["pregunta_form"] = self.PreguntaInlineFormSet()
+        context["enfermedad_form"] = self.LineaEnfermedadInlineFormSet()
         return context
 
     def form_valid(self, form):
@@ -86,6 +97,7 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
         receta_form = self.RecetaInlineFormSet(self.request.POST)
         dieta_form = self.DietaInlineFormSet(self.request.POST)
         pregunta_form = self.PreguntaInlineFormSet(self.request.POST)
+        enfermedad_form = self.LineaEnfermedadInlineFormSet(self.request.POST)
         if (
             form.is_valid()
             and alergias_form.is_valid()
@@ -94,6 +106,7 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
             and receta_form.is_valid()
             and dieta_form.is_valid()
             and pregunta_form.is_valid()
+            and enfermedad_form.is_valid()
         ):
             prevent = self.form_valid(form)
             alergias_form.instance = form.instance
@@ -108,6 +121,8 @@ class CreateHistoriaView(LoginRequiredMixin, CreateView):
             dieta_form.save()
             pregunta_form.instance = form.instance
             pregunta_form.save()
+            enfermedad_form.instance = form.instance
+            enfermedad_form.save()
             return prevent
         else:
             return self.form_invalid(form)
@@ -152,6 +167,9 @@ class UpdateHistoriaView(LoginRequiredMixin, UpdateView):
     PreguntaInlineFormSet = inlineformset_factory(
         HistoriaClinica, Pregunta, fields=("pregunta", "respuesta",), extra=1,
     )
+    LineaEnfermedadInlineFormSet = inlineformset_factory(
+        HistoriaClinica, LineaEnfermedad, fields=("enfermedad",), extra=1,
+    )
 
     def get_object(self, queryset=None):
         obj = get_object_or_404(HistoriaClinica, uuid=self.kwargs["uuid2"])
@@ -167,6 +185,9 @@ class UpdateHistoriaView(LoginRequiredMixin, UpdateView):
         context["receta_form"] = self.RecetaInlineFormSet(instance=self.object)
         context["dieta_form"] = self.DietaInlineFormSet(instance=self.object)
         context["pregunta_form"] = self.PreguntaInlineFormSet(instance=self.object)
+        context["enfermedad_form"] = self.LineaEnfermedadInlineFormSet(
+            instance=self.object
+        )
         return context
 
     def post(self, request, *args, **kwargs):
@@ -190,6 +211,9 @@ class UpdateHistoriaView(LoginRequiredMixin, UpdateView):
         pregunta_form = self.PreguntaInlineFormSet(
             self.request.POST, instance=self.object
         )
+        enfermedad_form = self.LineaEnfermedadInlineFormSet(
+            self.request.POST, instance=self.object
+        )
         if (
             form.is_valid()
             and alergias_form.is_valid()
@@ -198,6 +222,7 @@ class UpdateHistoriaView(LoginRequiredMixin, UpdateView):
             and receta_form.is_valid()
             and dieta_form.is_valid()
             and pregunta_form.is_valid()
+            and enfermedad_form.is_valid()
         ):
             prevent = self.form_valid(form)
             alergias_form.instance = form.instance
@@ -212,6 +237,8 @@ class UpdateHistoriaView(LoginRequiredMixin, UpdateView):
             dieta_form.save()
             pregunta_form.instance = form.instance
             pregunta_form.save()
+            enfermedad_form.instance = form.instance
+            enfermedad_form.save()
             return prevent
         else:
             return self.form_invalid(form)
@@ -283,4 +310,57 @@ class HistoriaPDFReportView(LoginRequiredMixin, PDFTemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["historia"] = get_object_or_404(HistoriaClinica, uuid=kwargs["uuid"])
+        return context
+
+
+class CreateEnfermedadView(LoginRequiredMixin, CreateView):
+    template_name = "historias/enfermedad_create.html"
+    model = Enfermedad
+    form_class = CreateEnfermedadForm
+
+    def get_success_url(self):
+        return reverse("historias:lista-enfermedad")
+
+
+class UpdateEnfermedadView(LoginRequiredMixin, UpdateView):
+    template_name = "historias/enfermedad_update.html"
+    model = Enfermedad
+    form_class = UpdateEnfermedadForm
+
+    def get_success_url(self):
+        return reverse("historias:lista-enfermedad")
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Enfermedad, uuid=self.kwargs["uuid"])
+        return obj
+
+
+class DeleteEnfermedadView(LoginRequiredMixin, DeleteView):
+    model = Enfermedad
+    success_url = reverse_lazy("historias:lista-enfermedad")
+
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Enfermedad, uuid=self.kwargs["uuid"])
+        return obj
+
+
+class EnfermedadListView(LoginRequiredMixin, ListView):
+    model = Enfermedad
+    template_name = "historias/enfermedad_list.html"
+    paginate_by = 10
+
+    def get_queryset(self):
+        nombre_enfermedad = self.request.GET.get("nombre_enfermedad", "")
+
+        query = Enfermedad.objects.filter(
+            (Q(nombre__icontains=nombre_enfermedad))
+        )
+        return query
+
+    def get_context_data(self, **kwargs):
+        base_url = self.request.GET.copy()
+        if "page" in base_url:
+            base_url.pop("page")
+        context = super(EnfermedadListView, self).get_context_data(**kwargs)
+
         return context
