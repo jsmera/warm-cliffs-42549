@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="input-group no-border">
-                        <input type="text" value="{{ fecha_creacion }}" name="fecha_creacion" class="form-control" placeholder="Fecha Creacion">
+                        <input id="id_fecha" type="text" value="{{ fecha_creacion }}" name="fecha_creacion" class="form-control" placeholder="Fecha Creacion">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -74,4 +74,13 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $('#id_fecha').datepicker({
+            format: "yyyy-mm-dd",
+            language: "es",
+            orientation: "bottom auto"
+        });
+    </script>
 {% endblock %}
