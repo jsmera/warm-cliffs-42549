@@ -55,3 +55,6 @@ class Usuario(Perfil, AbstractCustomUser):
 
 class Paciente(Perfil):
     uuid = ShortUUIDField()
+    nutricionista = models.ForeignKey(
+        "user.Usuario", models.SET_NULL, blank=True, null=True,
+    )

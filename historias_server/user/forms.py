@@ -159,6 +159,7 @@ class UpdatePacienteForm(ModelForm):
             "telefono",
             "direccion",
             "genero",
+            "nutricionista",
         ]
         labels = {
             "email": "Correo electrónico",

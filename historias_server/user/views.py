@@ -94,6 +94,10 @@ class CreatePacienteView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse("usuarios:lista-pacientes")
+    
+    def form_valid(self, form):
+        form.instance.nutricionista = self.request.user
+        return super(CreatePacienteView, self).form_valid(form)
 
 
 class UpdatePacienteView(LoginRequiredMixin, UpdateView):
