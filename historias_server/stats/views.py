@@ -1,7 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.shortcuts import render
-from historias_server.historias.models import HistoriaClinica, LineaEnfermedad, LineaConsumo
+from historias_server.historias.models import (
+    HistoriaClinica,
+    LineaEnfermedad,
+    LineaConsumo,
+)
 from django.db.models import Count
 from historias_server.user.models import Usuario, Paciente
 
@@ -23,16 +27,16 @@ class DashboardView(LoginRequiredMixin, View):
         nombres_enfermedades = []
         numero_enfermedades = []
         colores_enfermedades = [
-            '#4acccd',
-            '#fcc468',
-            '#ef8157',
-            '#9b59b6',
+            "#4acccd",
+            "#fcc468",
+            "#ef8157",
+            "#9b59b6",
         ]
         colores_alimentos = [
-            '#4acccd',
-            '#fcc468',
-            '#ef8157',
-            '#9b59b6',
+            "#4acccd",
+            "#fcc468",
+            "#ef8157",
+            "#9b59b6",
         ]
         nombres_alimentos = []
         numero_alimentos = []
@@ -52,8 +56,8 @@ class DashboardView(LoginRequiredMixin, View):
             "nombres_alimentos": nombres_alimentos,
             "numero_alimentos": numero_alimentos,
             "numero_enfermedades": numero_enfermedades,
-            "colores_enfermedades": colores_enfermedades[:len(numero_enfermedades)],
-            "colores_alimentos": colores_alimentos[:len(numero_alimentos)],
+            "colores_enfermedades": colores_enfermedades[: len(numero_enfermedades)],
+            "colores_alimentos": colores_alimentos[: len(numero_alimentos)],
             "pesos": pesos,
         }
         return render(request, "stats/dashboard.html", context)
